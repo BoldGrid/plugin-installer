@@ -489,8 +489,7 @@ class Installer {
 			) ) {
 				wp_register_style(
 					'bglib-plugin-installer',
-					dirname( Library\Configs::get( 'libraryUrl' ) ) .
-						'/plugin-installer/src/assets/css/plugin-installer.css',
+					plugins_url( '/assets/css/plugin-installer.css', dirname( __FILE__ ) ),
 					array( 'common' )
 				);
 
@@ -513,8 +512,7 @@ class Installer {
 				// Enqueue Javascript.
 				wp_register_script(
 					'bglib-plugin-installer',
-					dirname( Library\Configs::get( 'libraryUrl' ) ) .
-						'/plugin-installer/src/assets/js/plugin-installer.js',
+					plugins_url( '/assets/js/plugin-installer.js', dirname( __FILE__ ) ),
 					array(
 						'jquery',
 						'plugin-install',
