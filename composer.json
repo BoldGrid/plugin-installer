@@ -2,7 +2,7 @@
     "name": "boldgrid/plugin-installer",
     "description": "The BoldGrid plugin installer used for official BoldGrid plugins.",
     "type": "library",
-    "license": "GPL2.0",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Joe C",
