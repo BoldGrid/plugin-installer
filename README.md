@@ -11,5 +11,5 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
-### 1.0.0 In progress ###
+### 1.0.0 ###
 * Initial commit.
