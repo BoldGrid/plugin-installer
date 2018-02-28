@@ -755,8 +755,9 @@ class Installer {
 	 * @since 1.0.0
 	 *
 	 * @hook: set_site_transient_update_plugins
+	 * @hook: site_transient_update_plugins
 	 *
-	 * @param  StdVlass $updates Updates available.
+	 * @param  StdClass $updates Updates available.
 	 * @return StdClass
 	 */
 	public function externalUpdates( $updates ) {
