@@ -415,6 +415,31 @@ class Installer {
 	}
 
 	/**
+	 * Filter boldgrid_backup notice_show configs.
+	 *
+	 * This will allow boldgrid backup to show the "backup site now" message on
+	 * the BoldGrid tab.
+	 *
+	 * @since 1.0.2
+	 *
+	 * @hook: boldgrid_backup_notice_show_configs
+	 *
+	 * @param  array $configs
+	 * @return array
+	 */
+	public function boldgrid_backup_notice_show_configs( $configs ) {
+
+		if( empty( $_GET['tab'] ) || 'boldgrid' === $_GET['tab'] ) {
+			$configs[] = array(
+				'pagenow' => 'plugin-install.php',
+				'check' => 'plugins',
+			);
+		}
+
+		return $configs;
+	}
+
+	/**
 	 * Get the premium URL for a users to login and upgrade with.
 	 *
 	 * This checks the 'boldgrid_reseller' option to see if an

@@ -11,6 +11,9 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
+### 1.0.2 ###
+* Update: Added filter for BoldGrid Backup.
+
 ### 1.0.1 ###
 * Bug fix: JIRA BGINSP-8    Fixed missing BoldGrid wporg plugin cards in Plugins >> Add New.
 
