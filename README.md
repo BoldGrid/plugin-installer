@@ -11,6 +11,9 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
+### 1.0.3 ###
+* Update: Added prettier-eslint.
+
 ### 1.0.2 ###
 * Update: Added filter for BoldGrid Backup.
 
