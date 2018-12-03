@@ -610,6 +610,8 @@ class Installer {
 	 * @since 1.0.0
 	 *
 	 * @global $wp_version WordPress version.
+	 *
+	 * @return object
 	 */
 	public function getPluginInformation( $plugins ) {
 		global $wp_version;
@@ -728,6 +730,8 @@ class Installer {
 		}
 
 		set_site_transient( 'boldgrid_plugins', $responses, 8 * HOUR_IN_SECONDS );
+
+		return $responses;
 	}
 
 
