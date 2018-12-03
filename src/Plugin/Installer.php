@@ -467,6 +467,12 @@ class Installer {
 			}
 		}
 
+		// Append a source to the URL if it doesn't have one.
+		parse_str( parse_url( $url, PHP_URL_QUERY ), $query );
+		if ( empty( $query['source'] ) ) {
+			$url = add_query_arg( 'source', 'add-new-' . urlencode( $plugin ), $url );
+		}
+
 		return apply_filters( 'Boldgrid\Library\Plugin\Installer\premiumUrl', $url, $plugin );
 	}
 

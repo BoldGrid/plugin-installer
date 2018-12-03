@@ -14,6 +14,7 @@ composer require boldgrid/plugin-installer
 ### 1.0.4 In progress ###
 
 * Bug fix: JIRA BGTHEME-693 BoldGrid plugin cards not always showing in Plugins >> Add New.
+* Update:  Add UTM params to upgrade links.
 
 ### 1.0.3 ###
 * Update: Added prettier-eslint.
