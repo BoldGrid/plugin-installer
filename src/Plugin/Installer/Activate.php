@@ -32,7 +32,11 @@ class Activate {
 	protected $configs;
 
 	/**
+	 * Our text domain.
 	 *
+	 * @since 1.1.0
+	 * @access private
+	 * @var string
 	 */
 	private $textdomain = 'boldgrid-plugin-installer';
 
