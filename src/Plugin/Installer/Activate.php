@@ -32,6 +32,11 @@ class Activate {
 	protected $configs;
 
 	/**
+	 *
+	 */
+	private $textdomain = 'boldgrid-plugin-installer';
+
+	/**
 	 * Initialize class and set class properties.
 	 *
 	 * @since 1.0.0
@@ -48,6 +53,8 @@ class Activate {
 	 * @since 1.0.0
 	 */
 	public function init() {
+		load_textdomain( $this->textdomain, dirname( dirname( dirname( __FILE__ ) ) ) . '/languages/' . $this->textdomain . '-' . get_locale() . '.mo' );
+
 		Library\Filter::add( $this );
 	}
 
@@ -65,7 +72,7 @@ class Activate {
 	 */
 	public function activation() {
 		if ( ! current_user_can( 'install_plugins' ) ) {
-			wp_die( __( 'Sorry, you are not allowed to activate plugins on this site.', 'boldgrid-library' ) );
+			wp_die( __( 'Sorry, you are not allowed to activate plugins on this site.', 'boldgrid-plugin-installer' ) );
 		}
 
 		$nonce = $_POST['nonce'];
@@ -73,7 +80,7 @@ class Activate {
 
 		// Check our nonce, if they don't match then bounce!
 		if ( ! wp_verify_nonce( $nonce, 'bglibPluginInstallerNonce' ) ) {
-			die( __( 'Error - unable to verify nonce, please try again.', 'boldgrid-library' ) );
+			die( __( 'Error - unable to verify nonce, please try again.', 'boldgrid-plugin-installer' ) );
 		}
 
 		// Include the required libs for activation.
@@ -124,7 +131,8 @@ class Activate {
 				if ( is_wp_error( $activate ) ) {
 					// Process error.
 					$msg = sprintf(
-						__( 'There was an error activating %s.', 'boldgrid-library' ),
+						// translators: 1 the name of the plugin the user was trying to activate.
+						__( 'There was an error activating %1$s.', 'boldgrid-plugin-installer' ),
 						$api->name
 					);
 
@@ -132,7 +140,8 @@ class Activate {
 				}
 
 				$msg = sprintf(
-					__( '%s successfully activated.', 'boldgrid-library' ),
+					// translators: 1 the name of the plugin the user was trying to activate.
+					__( '%1$s successfully activated.', 'boldgrid-plugin-installer' ),
 					$api->name
 				);
 
@@ -142,7 +151,8 @@ class Activate {
 			$status = 'failed';
 
 			$msg = sprintf(
-				__( 'There was an error activating %s.', 'boldgrid-library' ),
+				// translators: 1 the name of the plugin the user was trying to activate.
+				__( 'There was an error activating %s.', 'boldgrid-plugin-installer' ),
 				$api->name
 			);
 
