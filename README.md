@@ -11,7 +11,9 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
-### 1.0.5 In progress ###
+### 1.0.5 ###
+
+Release date: Apr 16th, 2019
 
 * New feature: Added German de_DE translations.
 * Update: Made translation ready. Updated text domain to boldgrid-plugin-installer.
