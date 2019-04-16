@@ -148,7 +148,7 @@ class Installer {
 	 * @return array $tabs Tabs in the WordPress "Plugins > Add New" filter bar.
 	 */
 	public function addTab( $tabs ) {
-		$boldgrid = array( 'boldgrid' => __( 'BoldGrid', 'boldgrid-library' ) );
+		$boldgrid = array( 'boldgrid' => 'BoldGrid', );
 		$tabs = array_merge( $boldgrid, $tabs );
 
 		return $tabs;
@@ -306,19 +306,19 @@ class Installer {
 				}
 
 				$button_classes = 'install button';
-				$button_text = __( 'Install Now', 'boldgrid-library' );
+				$button_text = esc_html__( 'Install Now', 'boldgrid-plugin-installer' );
 					$file = Util\Plugin::getPluginFile( $api->slug );
 					if ( ! empty( $file ) ) {
 
 						// Has activation already occured? Disable button if so.
 						if ( is_plugin_active( $file ) ) {
 							$button_classes = 'button disabled';
-							$button_text = __( 'Activated', 'boldgrid-library' );
+							$button_text = esc_html__( 'Activated', 'boldgrid-plugin-installer' );
 
 						// Otherwise allow activation button.
 						} else {
 							$button_classes = 'activate button button-primary';
-							$button_text = __( 'Activate', 'boldgrid-library' );
+							$button_text = esc_html__( 'Activate', 'boldgrid-plugin-installer' );
 						}
 					}
 
@@ -358,7 +358,12 @@ class Installer {
 					if ( isset( $this->license->{$premiumSlug} ) || isset( $this->license->{$api->slug} ) ) {
 						$pluginClasses = "plugin-card-{$api->slug} premium";
 					} else {
-						$premiumLink = '<li><a href="' . $premiumUrl . '" class="button get-premium" target="_blank" aria-label="' . sprintf( __( 'Upgrade %s to premium', 'boldgrid-library' ), $api->name ) . '">' . sprintf( __( 'Get Premium!' ), 'boldgrid-library' ) . '</a></li>';
+						$premiumLink = '
+							<li>
+								<a href="' . esc_url( $premiumUrl ) . '" class="button get-premium" target="_blank" aria-label="' . sprintf( /* translators: 1 The plugin's name. */ esc_html__( 'Upgrade %s to premium', 'boldgrid-plugin-installer' ), $api->name ) . '">' .
+									sprintf( esc_html__( 'Get Premium!', 'boldgrid-plugin-installer' ) ) . '
+								</a>
+							</li>';
 					}
 
 					$messageClasses = 'installer-messages';
@@ -370,20 +375,28 @@ class Installer {
 							$messageClasses = "{$messageClasses} update-message notice inline notice-warning notice-alt";
 							$updateUrl = add_query_arg(
 								array(
-									'action' => 'upgrade-plugin',
-									'plugin' => urlencode( $file ),
-									'slug' => $api->slug,
+									'action'   => 'upgrade-plugin',
+									'plugin'   => urlencode( $file ),
+									'slug'     => $api->slug,
 									'_wpnonce' => wp_create_nonce( "upgrade-plugin_{$api->slug}" ),
 								),
 								self_admin_url( 'update.php' )
 							);
 							$updateLink = '<a href="' . $updateUrl .
 								'" class="update-link" aria-label="' .
-								sprintf( __( 'Update %s now', 'boldgrid-library' ), $api->name ) .
+								sprintf(
+									// translators: 1 The name of the plugin to update.
+									esc_html__( 'Update %s now', 'boldgrid-plugin-installer' ),
+									$api->name
+								) .
 								'" data-plugin="' . $file . '" data-slug="' . $api->slug . '"> ' .
-								__( 'Update now' ) . '</a>';
+								esc_html__( 'Update now', 'boldgrid-plugin-installer' ) . '</a>';
 
-							$message = sprintf( __( 'New version available. %s' ), $updateLink );
+							$message = sprintf(
+								// translators: 1 The link to update the plugin.
+								esc_html__( 'New version available. %s', 'boldgrid-plugin-installer' ),
+								$updateLink
+							);
 					}
 
 					// Send plugin data to template.
@@ -556,14 +569,14 @@ class Installer {
 					'bglib-plugin-installer',
 					'_bglibPluginInstaller',
 					array(
-						'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-						'nonce' => wp_create_nonce( 'bglibPluginInstallerNonce' ),
-						'status' => ( bool ) $this->getTransient(),
-						'install' => __( 'Install Now', 'boldgrid-library' ),
-						'installing' => __( 'Installing', 'boldgrid-library' ),
-						'installed' => __( 'Activated', 'boldgrid-library' ),
-						'activate' => __( 'Activate', 'boldgrid-library' ),
-						'activating' => __( 'Activating', 'boldgrid-library' ),
+						'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+						'nonce'      => wp_create_nonce( 'bglibPluginInstallerNonce' ),
+						'status'     => ( bool ) $this->getTransient(),
+						'install'    => esc_html__( 'Install Now', 'boldgrid-plugin-installer' ),
+						'installing' => esc_html__( 'Installing', 'boldgrid-plugin-installer' ),
+						'installed'  => esc_html__( 'Activated', 'boldgrid-plugin-installer' ),
+						'activate'   => esc_html__( 'Activate', 'boldgrid-plugin-installer' ),
+						'activating' => esc_html__( 'Activating', 'boldgrid-plugin-installer' ),
 					)
 				);
 

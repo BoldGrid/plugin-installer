@@ -1,7 +1,8 @@
 {
   "scripts": {
     "js-lint": "prettier-eslint **/*.js --list-different",
-    "js-lint-fix": "prettier-eslint **/*.js --write"
+    "js-lint-fix": "prettier-eslint **/*.js --write",
+    "create-pot": "php -d xdebug.max_nesting_level=500 \"$(which wp)\" i18n make-pot src src/languages/boldgrid-plugin-installer.pot --slug=\"boldgrid-plugin-installer\""
   },
   "devDependencies": {
     "eslint": "^4.19.1",
