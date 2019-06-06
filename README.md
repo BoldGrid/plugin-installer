@@ -11,6 +11,10 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
+### 1.0.6 In progress ###
+
+* Update: Updated dependencies.
+
 ### 1.0.5 ###
 
 Release date: Apr 16th, 2019
