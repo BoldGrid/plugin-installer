@@ -13,6 +13,8 @@ composer require boldgrid/plugin-installer
 
 ### 1.0.6 ###
 
+Release date: December 10th, 2019
+
 * Bug fix: Do not show the Get Premium button when not available for purchase.
 * Update: Updated dependencies.
 
