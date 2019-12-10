@@ -46,8 +46,8 @@ class Installer {
 		$this->setConfigs( $configs );
 		$this->releaseChannel = $releaseChannel;
 
-		if ( class_exists( 'Boldgrid\Library\Form\Wpforms\AddNew' ) ) {
-			$this->forms = new \Boldgrid\Library\Form\Wpforms\AddNew();
+		if ( class_exists( 'Boldgrid\Library\Form\AddNew' ) ) {
+			$this->forms = new \Boldgrid\Library\Form\AddNew();
 		}
 
 		if ( $this->configs['enabled'] && ! empty( $this->configs['plugins'] ) ) {
@@ -353,11 +353,13 @@ class Installer {
 					$pluginClasses = "plugin-card-{$api->slug}";
 
 					$premiumLink = null;
-					$premiumUrl = $this->premiumUrl( $api->slug, $premiumLink );
+					$premiumUrl  = $this->premiumUrl( $api->slug, $premiumLink );
+					$offerPremium = empty( $this->configs['plugins'][ $api->slug ]['hide_premium'] ) &&
+						empty( $this->configs['wporgPlugins'][ $api->slug ]['hide_premium'] );
 
 					if ( isset( $this->license->{$premiumSlug} ) || isset( $this->license->{$api->slug} ) ) {
 						$pluginClasses = "plugin-card-{$api->slug} premium";
-					} else {
+					} elseif ( $offerPremium ) {
 						$premiumLink = '
 							<li>
 								<a href="' . esc_url( $premiumUrl ) . '" class="button get-premium" target="_blank" aria-label="' . sprintf( /* translators: 1 The plugin's name. */ esc_html__( 'Upgrade %s to premium', 'boldgrid-plugin-installer' ), $api->name ) . '">' .
@@ -946,13 +948,6 @@ class Installer {
 		// Add wporg recommended plugins to the Plugins > Add New page.
 		if ( $wporgPlugins = get_site_transient( 'boldgrid_wporg_plugins', false ) ) {
 			$plugins = array_merge( $plugins, (array) $wporgPlugins );
-		}
-
-		// Remove boldgrid-ninja-forms if user doesn't already have it.
-		$file = Util\Plugin::getPluginFile( 'boldgrid-ninja-forms' );
-
-		if ( ! empty( $plugins['boldgrid-ninja-forms'] ) && empty( $file ) ) {
-			unset( $plugins['boldgrid-ninja-forms'] );
 		}
 
 		return (object) $plugins;

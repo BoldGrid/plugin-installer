@@ -10,12 +10,6 @@
             "role": "Developer"
         },
         {
-            "name": "Tim Elsass",
-            "email": "dev@tim.ph",
-            "homepage": "http://tim.ph",
-            "role": "Developer"
-        },
-        {
             "name": "Rafael Ramos",
             "email": "rafaelh@boldgrid.com",
             "homepage": "http://rafael-ramos.com",
@@ -31,8 +25,5 @@
         "psr-4": {
             "Boldgrid\\Library\\Plugin\\": "src/Plugin"
         }
-    },
-    "require": {
-        "boldgrid/library": "^2.0.0"
     }
 }

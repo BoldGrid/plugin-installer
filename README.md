@@ -11,8 +11,9 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
-### 1.0.6 In progress ###
+### 1.0.6 ###
 
+* Bug fix: Do not show the Get Premium button when not available for purchase.
 * Update: Updated dependencies.
 
 ### 1.0.5 ###
