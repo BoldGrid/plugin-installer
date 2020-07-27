@@ -85,12 +85,12 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 
 				// Update the button to activation button.
 				button.attr( 'class', 'activate button button-primary' );
-				button.text( wp.updates.l10n.activatePlugin );
+				button.text( wp.i18n.__( 'Activate' ) );
 
 				// Update success message.
 				notice.attr( 'class', 'notice updated-message notice-success notice-alt' )
 					.find( 'p' )
-					.text( wp.updates.l10n.installedMsg );
+					.text( wp.i18n.__( 'Installation completed successfully.' ) );
 
 				// Clear loading process indicator.
 				self.loading = false;
@@ -162,11 +162,11 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 						// Add processing message.
 						el.addClass( 'updating-message' )
 							.find( 'p' )
-							.text( wp.updates.l10n.updatingMsg );
+							.text( wp.i18n.__( 'Installing...' ) );
 
 						// Add loading button.
 						$( '.plugin-card-' + message.data.slug + ' .install.button' )
-							.html( wp.updates.l10n.installing )
+							.html(wp.i18n.__( 'Installing...' ) )
 							.attr( 'class', 'installing button disabled' );
 					}
 
@@ -183,11 +183,11 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 						// Add processing message.
 						el.addClass( 'installer-messages updating-message notice inline notice-warning notice-alt' )
 							.find( 'p' )
-							.text( wp.updates.l10n.installingMsg );
+							.text( wp.i18n.__( 'Installing...' ) );
 
 						// Add loading button.
 						$( '.plugin-card-' + message.data.slug + ' .install.button' )
-							.html( wp.updates.l10n.installing )
+							.html( wp.i18n.__( 'Installing...' ) )
 							.attr( 'class', 'installing button disabled' );
 					}
 				}
@@ -209,7 +209,7 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 				// Update success message.
 				el.attr( 'class', 'installer-messages update-message updated-message notice inline notice-success notice-alt' )
 					.find( 'p' )
-					.text( wp.updates.l10n.updatedMsg );
+					.text( wp.i18n.__( 'Update completed successfully.' ) );
 
 				// Clear loading process indicator.
 				self.loading = false;
@@ -259,7 +259,7 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 				// Remove any current messages displayed.
 				el.addClass( 'updating-message' )
 					.find( 'p' )
-					.html( wp.updates.l10n.updatingMsg );
+					.html( wp.i18n.__( 'Updating... please wait.' ) );
 
 				// Send ajax request to upgrade plugin.
 				wp.updates.updatePlugin( {
@@ -342,7 +342,7 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 
 				// Installation of plugins.
 				if ( el.hasClass( 'install' ) ) {
-					el.html( wp.updates.l10n.installing );
+					el.html(wp.i18n.__( 'Installing...' ));
 					el.attr( 'class', 'installing button disabled' );
 
 					// Send ajax request to upgrade plugin.
