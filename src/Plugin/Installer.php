@@ -563,6 +563,7 @@ class Installer {
 						'jquery',
 						'plugin-install',
 						'updates',
+						'wp-i18n',
 					)
 				);
 
