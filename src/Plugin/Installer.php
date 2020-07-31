@@ -785,11 +785,11 @@ class Installer {
 			$update->url = $details->url;
 			$update->package = $details->download_link;
 
-			if ( ( $this->configs['plugins'][ $plugin ]['Version'] !== $details->new_version ) && Util\Plugin::getPluginFile( $details->slug ) ) {
+			if ( isset( $updates ) && ( $this->configs['plugins'][ $plugin ]['Version'] !== $details->new_version ) && Util\Plugin::getPluginFile( $details->slug ) ) {
 				$update->tested = $details->tested_wp_version;
 				$update->compatibility = new \stdClass();
 				$updates->response[ $update->plugin ] = $update;
-			} else {
+			} elseif ( isset( $updates->no_update ) && isset( $updates->no_update[ $update->plugin ] ) ) {
 				$updates->no_update[ $update->plugin ] = $update;
 			}
 		}
