@@ -147,7 +147,7 @@ BOLDGRID.LIBRARY = BOLDGRID.LIBRARY || {};
 					return;
 				}
 
-				if ( ! _.isUndefined( message.action ) ) {
+				if ( ! _.isUndefined( message ) && ! _.isUndefined( message.action ) ) {
 
 					// Update plugin events.
 					if ( message.action === 'update-plugin' ) {
