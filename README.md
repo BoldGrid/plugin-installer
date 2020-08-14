@@ -11,6 +11,18 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
+### 1.0.8 In progress ###
+
+Release date: ??
+
+* Update: Optimized plugin updates in Installer class.
+
+### 1.0.7 ###
+
+Release date: July 31st, 2020
+
+* Bug Fix: WP 5.5 - Cannot update plugins from Plugins > Add New > BoldGrid
+
 ### 1.0.6 ###
 
 Release date: December 10th, 2019
