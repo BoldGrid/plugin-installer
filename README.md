@@ -16,6 +16,7 @@ composer require boldgrid/plugin-installer
 Release date: ??
 
 * Update: Optimized plugin updates in Installer class.
+* Update: Optimized externalUpdates within Installer class.
 
 ### 1.0.7 ###
 

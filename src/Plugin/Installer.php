@@ -835,7 +835,12 @@ class Installer {
 	 * This is set to priority 12 to override the individual plugin
 	 * update classes that set priority at 11 in this filter.
 	 *
+	 * Tread carefully when updating this method. On a site with 55 plugins (54 of them inactive), this
+	 * method was called 64 times within wp-admin/plugins.php.
+	 *
 	 * @since 1.0.0
+	 *
+	 * @global string $pagenow Current admin page.
 	 *
 	 * @hook: set_site_transient_update_plugins
 	 * @hook: site_transient_update_plugins
@@ -844,6 +849,19 @@ class Installer {
 	 * @return StdClass
 	 */
 	public function externalUpdates( $updates ) {
+		global $pagenow;
+
+		/*
+		 * This filter only needs to be ran on the Plugins >> Add New page.
+		 *
+		 * The boldgrid_wporg_plugins site transient is retrieved and possibly set below. This transient
+		 * is only for the Plugins >> Add New page. It needs to fetch and store the info needed to
+		 * display BoldGrid plugins for the Add new page.
+		 */
+		if ( 'plugin-install.php' !== $pagenow ) {
+			return $updates;
+		}
+
 		if ( ! empty( $this->configs['wporgPlugins'] ) && ! get_site_transient( 'boldgrid_wporg_plugins', false ) ) {
 			$plugins = $this->configs['wporgPlugins'];
 
