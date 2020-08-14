@@ -32,11 +32,31 @@ class Installer {
 		$configs,
 		$releaseChannel,
 		$forms,
-		$transient,
-		$updates;
+		$transient;
+
+	/**
+	 * Updates.
+	 *
+	 * This property is set via self::setUpdates().
+	 *
+	 * Originally, self::setUpdates() was called within the constructor. This wasn't a problem until
+	 * it was realized that the constructor was being triggered on every admin page load - and through
+	 * mostly the self::setUpdates() call, was adding roughly .20 seconds to every admin page load.
+	 *
+	 * The $updates property is only used within the self::init() method, and so the self::setUpdates()
+	 * call has been moved from the constructor and to the self::init() method.
+	 *
+	 * @since 1.0.0
+	 * @access protected
+	 * @var array $updates Plugin update info as retrieved from get_plugin_updates().
+	 */
+	protected $updates;
 
 	/**
 	 * Initialize class and set class properties.
+	 *
+	 * @todo Optimize the loading of this class. This constructor is being initialized on every admin
+	 * page. Be careful what you add to it.
 	 *
 	 * @since 1.0.0
 	 *
@@ -53,7 +73,6 @@ class Installer {
 		if ( $this->configs['enabled'] && ! empty( $this->configs['plugins'] ) ) {
 			$this->setPluginData( $this->configs['plugins'] );
 			$this->setTransient();
-			$this->setUpdates();
 			$license = new Library\License;
 			$this->license = Library\Configs::get( 'licenseData' );
 			$this->ajax();
@@ -276,6 +295,9 @@ class Installer {
 	/**
 	 * Initialize the display of the plugins.
 	 *
+	 * This code is triggerd on the "Plugins > Add New" page, and renders the content under the "BoldGrid"
+	 * section.
+	 *
 	 * @since 1.0.0
 	 *
 	 * @hook: install_plugins_boldgrid
@@ -287,6 +309,16 @@ class Installer {
 		if ( ! $plugins ) {
 			return;
 		}
+
+		/*
+		 * Initialize $this->updates.
+		 *
+		 * The $this->updates property is only used once within this file, and that's within this method.
+		 * When we don't initilze the updates, nothing seems to break or trigger a warning.
+		 *
+		 * @todo Review comment above and possibly remove $this->updates all together.
+		 */
+		$this->setUpdates();
 
 		?>
 		<div class="bglib-plugin-installer">
