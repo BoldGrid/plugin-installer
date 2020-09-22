@@ -803,6 +803,7 @@ class Installer {
 	 * @return StdClass $updates Updates available.
 	 */
 	public function filterUpdates( $updates ) {
+		$updates = (object) $updates;
 		$plugins = $this->getTransient() ? : array();
 
 		foreach( $plugins as $plugin => $details ) {
