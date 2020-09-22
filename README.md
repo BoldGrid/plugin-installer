@@ -11,12 +11,13 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
-### 1.0.8 In progress ###
+### 1.0.8 ###
 
-Release date: ??
+Release date: September 22nd, 2020
 
 * Update: Optimized plugin updates in Installer class.
 * Update: Optimized externalUpdates within Installer class.
+* Bug fix: Fixed handling empty updates object when Ajax updating a plugin.
 
 ### 1.0.7 ###
 
