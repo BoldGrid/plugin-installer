@@ -25,14 +25,18 @@ class Installer {
 	/**
 	 * @access protected
 	 *
-	 * @var array $configs   Configuration options for the plugin installer.
-	 * @var array $transient Data from boldgrid_plugins transient.
+	 * @var array                         $configs        Configuration options for the plugin installer.
+	 * @var string                        $releaseChannel The release channel to use for plugin updates.
+	 * @var \Boldgrid\Library\Form\AddNew $forms          Form class for the plugin installer.
+	 * @var array                         $transient      Data from boldgrid_plugins transient.
+	 * @var array                         $license        License data.
 	 */
 	protected
 		$configs,
 		$releaseChannel,
 		$forms,
-		$transient;
+		$transient,
+		$license;
 
 	/**
 	 * Updates.
@@ -514,8 +518,10 @@ class Installer {
 			}
 		}
 
+		$query_string = parse_url( $url, PHP_URL_QUERY ) ? parse_url( $url, PHP_URL_QUERY ) : '';
+
 		// Append a source to the URL if it doesn't have one.
-		parse_str( parse_url( $url, PHP_URL_QUERY ), $query );
+		parse_str( $query_string, $query );
 		if ( empty( $query['source'] ) ) {
 			$url = add_query_arg( 'source', 'add-new-' . urlencode( $plugin ), $url );
 		}
