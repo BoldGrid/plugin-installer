@@ -25,14 +25,18 @@ class Installer {
 	/**
 	 * @access protected
 	 *
-	 * @var array $configs   Configuration options for the plugin installer.
-	 * @var array $transient Data from boldgrid_plugins transient.
+	 * @var array                         $configs        Configuration options for the plugin installer.
+	 * @var string                        $releaseChannel The release channel to use for plugin updates.
+	 * @var \Boldgrid\Library\Form\AddNew $forms          Form class for the plugin installer.
+	 * @var array                         $transient      Data from boldgrid_plugins transient.
+	 * @var array                         $license        License data.
 	 */
 	protected
 		$configs,
 		$releaseChannel,
 		$forms,
-		$transient;
+		$transient,
+		$license;
 
 	/**
 	 * Updates.
