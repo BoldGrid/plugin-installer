@@ -11,6 +11,12 @@ composer require boldgrid/plugin-installer
 
 ## Changelog ##
 
+### 1.0.9 ###
+
+Release date: May 23rd, 2023
+
+* Update: Fix PHP 8.2 Deprecation notices.
+
 ### 1.0.8 ###
 
 Release date: September 22nd, 2020
